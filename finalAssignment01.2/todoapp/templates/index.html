@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Search</h1>
+
+    <form method="GET" action="{% url 'search_tv_shows' %}">
+        <input type="text" name="query" placeholder="Search..." />
+        <button type="submit">Search</button>
+    </form>
+
+       <!-- Drop down options-->
+    <form action="/action_page.php">
+      <label for="holiday">Choose a holiday:</label>
+      <select name="holiday" id="holiday">
+          <option value="xmas">Christmas</option>
+          <option value="hallo">Halloween</option>
+          <option value="easter">Easter</option>
+          <option value="han">Hanukkah</option>
+      </select>
+      <br><br>
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- FOR APIS-->
+    <div id="search-results">
+        <!-- ... -->
+        <h2>Search Results</h2>
+        <ul>
+            {% for result in results %}
+                <li>
+                    <strong>{{ result.name }}</strong>
+                    <p><strong>Start Date:</strong> {{ result.premiered }}</p>
+                    <p>{{ result.summary|safe }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        {% if not results %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
