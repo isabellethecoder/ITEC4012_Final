@@ -16,3 +16,6 @@ then in views, I made the search_results which took the user's input with GET an
 The search_tv_shows is responsible for connecting the TV API by searching up the user's query. If the response code is 200 the view processes the json data and extracts the information about the tv show. I had a very hard time with this. It was showing that the response was 200 but would display you searched for: blah blah blah and no results found. I was able to fix this by saving the search query and then making the API request so one set of results is returned.
 
 I'm feeling more confident then I was at the start. I'm aware that the backend code isn't entirely completed but i think I have the base necessary to finish. All I have to do is make the API endpoint show information which is possible extract holiday episodes and make the info on the holiday chosen in the drop down menu storable.
+
+
+ALSO IDK WHY IT SAYS THE MAIN PLS OPEN finalAssignment01.2
