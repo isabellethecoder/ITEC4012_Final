@@ -1,47 +1,84 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'todoapp/css/index.css' %}">
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="icon" type="image/png" href="{% static 'todoapp/images/cozyLogo.png' %}">
 </head>
 <body>
-    <h1>Search</h1>
+    <header class="navBar">
+    <a href="{% url 'search_tv_shows' %}">
+        <img class="logo" src="{% static 'todoapp/images/cozyLogo.png' %}" alt="Cozy Logo">
+    </a>
 
     <form method="GET" action="{% url 'search_tv_shows' %}">
-        <input type="text" name="query" placeholder="Search..." />
+        <input type="text" name="query" placeholder="Search TV Shows..." />
         <button type="submit">Search</button>
     </form>
-
-       <!-- Drop down options-->
-    <form action="/action_page.php">
-      <label for="holiday">Choose a holiday:</label>
-      <select name="holiday" id="holiday">
-          <option value="xmas">Christmas</option>
-          <option value="hallo">Halloween</option>
-          <option value="easter">Easter</option>
-          <option value="han">Hanukkah</option>
-      </select>
-      <br><br>
-        <button type="submit">Search</button>
-    </form>
+    </header>
 
     <!-- FOR APIS-->
-    <div id="search-results">
-        <!-- ... -->
-        <h2>Search Results</h2>
-        <ul>
-            {% for result in results %}
-                <li>
-                    <strong>{{ result.name }}</strong>
-                    <p><strong>Start Date:</strong> {{ result.premiered }}</p>
-                    <p>{{ result.summary|safe }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-        {% if not results %}
-            <p>No results found.</p>
+    <div>
+        {% if results %}
+            <ul class="show-grid">
+                {% for result in results %}
+                    <li class="show-item">
+                        {% if result.image %}
+                            <div class="show-container">
+                                <img class="showImg" src="{{ result.image }}" alt="{{ result.name }} Image">
+                                <strong class="showTitle"><a href="{% url 'show_index' result.id %}">{{ result.name }}</a></strong>
+                            </div>
+                        {% endif %}
+                        <p><strong></strong> {{ result.premiered }}</p>
+                        <p>{{ result.summary|safe }}</p>
+
+                        <ul class="episode-list">
+                            {% for episode in result.episodes %}
+                                {% if holiday in episode.summary|lower %}
+                                    <li class="episode-item">
+                                        <strong class="showTitle">{{ episode.name }}</strong>
+                                        <p>{{ episode.summary|safe }}</p>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p></p>
         {% endif %}
     </div>
 
+    <!-- Themed Shows -->
+    {% if not query %}
+        <div id="themed-shows">
+            <h2 class="exploreTitle">Explore</h2>
+            {% for category, shows in categories.items %}
+                <h3 class="categoryTitle">{{ category }}</h3>
+                <ul class="show-list">
+                    {% for show in shows %}
+                        <li class="show-item">
+                            {% if show.image %}
+                                <div class="show-container">
+                                    <img class="showImg" src="{{ show.image }}" alt="{{ show.name }} Image">
+                                    <strong class="showTitle"><a href="{% url 'show_index' show.id %}">{{ show.name }}</a></strong>
+                                </div>
+                            {% endif %}
+                            <p><strong></strong> {{ show.premiered }}</p>
+                            <p>{{ show.summary|safe }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    {% endif %}
 </body>
 </html>

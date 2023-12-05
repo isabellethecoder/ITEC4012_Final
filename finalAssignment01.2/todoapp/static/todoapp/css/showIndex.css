@@ -1,0 +1,176 @@
+body {
+    background: #1C2022;
+    font-family: 'Inter', sans-serif;
+}
+
+.show-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;  /* Adjust margin as needed */
+}
+
+.showImg {
+    width: 17vw;
+    height: 25vw;
+}
+
+h1 {
+    font-weight: 700;
+    color: white;
+}
+
+h2 {
+    font-weight: 600;
+    color: white;
+}
+
+h3 {
+    font-weight: 600;
+    color: white;
+}
+
+p {
+    font-weight: 300;
+    color: white;
+}
+
+strong {
+    font-weight: 300;
+    color: white;
+}
+
+.exploreTitle {
+    padding-left: 1.4vw;
+    padding-top: 0vw;
+}
+
+.categoryTitle {
+    padding-left: 1.4vw;
+}
+
+.showTitle {
+    padding-top: 1vw;
+    font-weight: bold;
+}
+
+.showImg {
+    width: 17vw;
+    height: 25vw;
+}
+
+ul, ol {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: #e6af2e;
+}
+
+a:active {
+    color: green;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.04vw;
+    background-color: #333;
+    color: white;
+}
+
+.navBar {
+    height: 3vw;
+    position: fixed;
+    width: 95.8vw;
+}
+
+.logo {
+    width: 5vw;
+    height: auto;
+    padding-left: 1vw;
+}
+
+.showDiv{
+    padding-top:5vw;
+}
+
+
+.showDiv {
+    padding-top: 5vw;
+}
+
+/* Style for each category */
+.category {
+    margin-bottom: 3vw; /* Adjust margin as needed */
+}
+
+.categoryTitle {
+    font-size: 1.5em; /* Adjust font size as needed */
+    margin-bottom: 1vw; /* Adjust margin as needed */
+    color: #e6af2e;
+}
+
+.show-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17vw, 1fr)); /* Adjust column width as needed */
+    gap: 1.3vw;
+}
+
+.show-item {
+    width: 100%; /* Adjust the width as needed */
+    margin: 0;
+}
+
+.show-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.showImg {
+    width: 100%;
+    height: auto;
+}
+
+.showTitle {
+    font-size: 1.2em; /* Adjust font size as needed */
+    margin-top: 1vw; /* Adjust margin as needed */
+}
+
+form {
+    display: flex;
+    margin-right: 1.4vw;
+}
+
+input[type="text"] {
+    padding: 0.5vw;
+    margin-right: 0.5vw;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 0.5vw 1vw;
+    background-color: #e6af2e;
+    color: #1C2022;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1C2022;
+    color: #e6af2e;
+}

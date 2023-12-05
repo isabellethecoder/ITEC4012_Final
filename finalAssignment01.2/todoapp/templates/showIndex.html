@@ -1,0 +1,55 @@
+{% load static %}
+
+<!-- showIndex.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'todoapp/css/showIndex.css' %}">
+    <meta charset="UTF-8">
+    <title>{{ show_info.name }}</title>
+</head>
+<body>
+<header class="navBar">
+    <a href="{% url 'search_tv_shows' %}">
+        <img class="logo" src="{% static 'todoapp/images/cozyLogo.png' %}" alt="Cozy Logo">
+    </a>
+
+    <form method="GET" action="{% url 'search_tv_shows' %}">
+        <input type="text" name="query" placeholder="Search TV Shows..." />
+        <button type="submit">Search</button>
+    </form>
+</header>
+
+<div class="showDiv">
+    <h1>{{ show_info.name }} Details</h1>
+    <p><strong>Premiered:</strong> {{ show_info.premiered }}</p>
+    <p>{{ show_info.summary|safe }}</p>
+    {% if show_info.image_url %}
+        <img src="{{ show_info.image_url }}" alt="{{ show_info.name }}">
+    {% endif %}
+
+    {% for category, shows in grouped_episodes.items %}
+        <div class="category">
+            <h2 class="categoryTitle">{{ category }}</h2>
+            <ul class="show-grid">
+                {% for episode in shows %}
+                    <li class="show-item">
+                        <div class="show-container">
+                            {% if episode.image_urls %}
+                                <img class="showImg" src="{{ episode.image_urls.0 }}" alt="{{ episode.title }}">
+                            {% endif %}
+                            <strong class="showTitle">{{ episode.title }}</strong>
+                            <p>Season: {{ episode.season_number }}, Episode: {{ episode.episode_number }}</p>
+                        </div>
+                        <p>{{ episode.summary|safe }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
